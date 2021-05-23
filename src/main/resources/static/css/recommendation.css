@@ -1,0 +1,106 @@
+.background {
+    background-color: #252540;
+    height: 100vh;
+    width: 100%;
+}
+
+.left-menu {
+    height: 100vh;
+    width: 10%;
+}
+
+.main {
+    height: 100vh;
+    width: 90%;
+    background: #0D0D2B;
+    border-radius: 45px;
+}
+
+.navbar-brand {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 52px;
+    letter-spacing: 0.02em;
+}
+
+.profile {
+    background: #FF5E5E;
+    border-radius: 27px;
+    width: 200px;
+    height: 60px;
+}
+
+.profile-image {
+    border-radius: 40px;
+}
+
+.deal {
+    background: #D6EDDA;
+    border-radius: 24px;
+    height: 250px;
+    width: 200px;
+}
+
+h1 {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 27.5px;
+    line-height: 41px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+}
+
+p {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    color: #8290A0;
+}
+
+h3 {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+}
+
+#navbarDropdownMenuLink {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 25px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+}
+
+#stats {
+    background: #E5F2FE;
+    border-radius: 24px;
+    height: 250px;
+}
+
+/* Animation */
+
+.transition {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#adv {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+}
