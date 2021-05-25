@@ -20,6 +20,7 @@ public class UserDto {
     private String email;
     private String nickname;
     private ProfileImage profileImage;
+    private Boolean oauthLinked;
 
     public static UserDto from(User user) {
         return UserDto.builder()
@@ -27,6 +28,7 @@ public class UserDto {
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .profileImage(user.getProfileImage())
+                .oauthLinked(user.getOauthLinked())
                 .build();
     }
 

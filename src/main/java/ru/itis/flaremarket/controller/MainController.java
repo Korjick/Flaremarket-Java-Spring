@@ -15,4 +15,9 @@ public class MainController {
         if(userDetails != null) return "redirect:/recommendation";
         return "index";
     }
+
+    @GetMapping("/signIn")
+    public String signIn(){
+        return "redirect:/";
+    }
 }

@@ -37,6 +37,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .role(UserRole.USER)
                 .state(UserState.NOT_CONFIRMED)
                 .confirmCode(UUID.randomUUID().toString())
+                .oauthLinked(form.getOauthLinked())
                 .build();
 
         userService.save(newUser);

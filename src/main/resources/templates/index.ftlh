@@ -59,7 +59,7 @@
                         <p id="registerMessage"></p>
                         <div class="d-flex">
                             <button id="registerButton" type="submit" class="btn" style="color: white; background-color: #ff5e5e">Register</button>
-                            <a class="ms-2 btn d-flex align-items-center justify-content-center" href="" style="background-color: #ff5e5e; width: 40px;"><img src="<@spring.url '/img/Google.png'/>" width="30" height="30" alt=""></a>
+                            <a class="ms-2 btn d-flex align-items-center justify-content-center" href="http://localhost:8080/oauth2/authorization/google" style="background-color: #ff5e5e; width: 40px;"><img src="<@spring.url '/img/Google.png'/>" width="30" height="30" alt=""></a>
                         </div>
                     </form>
                 </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="d-flex">
                             <button id="registerButton" type="submit" class="btn" style="color: white; background-color: #ff5e5e">Sign In</button>
-                            <a class="ms-2 btn d-flex align-items-center justify-content-center" href="" style="background-color: #ff5e5e; width: 40px;"><img src="<@spring.url '/img/Google.png'/>" width="30" height="30" alt=""></a>
+                            <a class="ms-2 btn d-flex align-items-center justify-content-center" href="http://localhost:8080/oauth2/authorization/google" style="background-color: #ff5e5e; width: 40px;"><img src="<@spring.url '/img/Google.png'/>" width="30" height="30" alt=""></a>
                         </div>
                     </form>
                 </div>

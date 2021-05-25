@@ -32,16 +32,20 @@ public class CustomErrorController implements ErrorController {
             switch (statusCode) {
                 case 500:
                     model.addAttribute("errorMessage", "Error inside the server.");
+                    logger.warn("Error inside the server.");
                     break;
                 case 400:
                     model.addAttribute("errorMessage", request.getAttribute(RequestDispatcher.ERROR_MESSAGE));
+                    logger.warn(request.getAttribute(RequestDispatcher.ERROR_MESSAGE).toString());
                     break;
                 case 404:
                     model.addAttribute("errorMessage", "The page you are looking for was not found.");
+                    logger.warn("The page was not found.");
                     break;
                 default:
                     model.addAttribute("errorNum", "Error");
                     model.addAttribute("errorMessage", request.getAttribute(RequestDispatcher.ERROR_MESSAGE));
+                    logger.warn(request.getAttribute(RequestDispatcher.ERROR_MESSAGE).toString());
                     break;
             }
         }

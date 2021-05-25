@@ -13,5 +13,6 @@ public interface UserService {
     User getRawUserById(Long id);
     User getRawUserByEmailOrNickname(String email, String nickname);
     User getRawUserByEmail(String email);
-    void save(User user);
+    UserDto save(User user);
+    void delete(Long id);
 }

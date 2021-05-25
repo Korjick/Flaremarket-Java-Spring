@@ -24,9 +24,9 @@
             <a class="my-4" href="<@spring.url '/recommendation'/>"><img src="<@spring.url '/img/Bill-n.png'/>"
                                                                          width="40" height="40" alt=""></a>
             <a class="my-4" href="<@spring.url '/auction'/>"><img src="<@spring.url '/img/Bet-n.png'/>"
-                                                                         width="40" height="40" alt=""></a>
+                                                                  width="40" height="40" alt=""></a>
             <a class="my-4" href="<@spring.url '/myitems'/>"><img src="<@spring.url '/img/Search-n.png'/>"
-                                                                         width="40" height="40" alt=""></a>
+                                                                  width="40" height="40" alt=""></a>
         </div>
         <div class="mb-5 d-flex justify-content-center">
             <a class="my-4" href="<@spring.url '/logout'/>"><img src="<@spring.url '/img/Logout.png'/>" width="40"
@@ -38,29 +38,36 @@
             <div class="container-fluid">
                 <a class="ms-5 navbar-brand">Overview</a>
                 <div class="d-flex align-items-center">
-                    <a class="me-3"  href="<@spring.url '/myitems'/>"><img src="<@spring.url '/img/SearchButton.png'/>"
-                                                                         alt="" width="50" height="50"></a>
+                    <a class="me-3" href="<@spring.url '/myitems'/>"><img src="<@spring.url '/img/SearchButton.png'/>"
+                                                                          alt="" width="50" height="50"></a>
                     <div class="profile d-flex justify-content-center align-items-center">
                         <#if user.getProfileImage()??>
                             <a href=""><img class="profile-image" id="profile-image"
-                                 src="<@spring.url '/files/${user.getProfileImage().getProfileImageUrl()}'/>" alt=""
-                                 width="40" height="40"></a>
+                                            src="<@spring.url '/files/${user.getProfileImage().getProfileImageUrl()}'/>"
+                                            alt=""
+                                            width="40" height="40"></a>
                         <#else>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img class="profile-image" src="<@spring.url '/img/Default.png'/>" alt="" width="40"
-                                 height="40"></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img class="profile-image"
+                                                                                                 src="<@spring.url '/img/Default.png'/>"
+                                                                                                 alt="" width="40"
+                                                                                                 height="40"></a>
                         </#if>
                         <!-- Modal -->
-                        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModal" aria-hidden="true">
+                        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModal"
+                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form enctype="multipart/form-data" action="<@spring.url '/profile/image'/>" method="post">
+                                        <form enctype="multipart/form-data" action="<@spring.url '/profile/image'/>"
+                                              method="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                             <div class="input-group mb-3">
-                                                <input type="file" name="image" class="form-control" required id="inputGroupFile01">
+                                                <input type="file" name="image" class="form-control" required
+                                                       id="inputGroupFile01">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Update</button>
                                         </form>
@@ -95,42 +102,48 @@
                     <h1>Day Deal</h1>
                     <div class="mt-3 d-flex" id="daydeal">
                         <#if (deal?size gt 2)>
-                            <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
-                                <img src="<@spring.url '/files/${deal[0].image}'/>" width="160" height="110" alt="">
-                                <p class="my-2">${deal[0].getDescription()}</p>
-                                <form action="<@spring.url '/sold/buy'/>" method="post">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                    <input type="hidden" name="itemId" value="${deal[0].id}">
-                                    <button id="deal1" type="submit" class="btn btn-outline-success mb-3"
-                                            style="color: green; background-color: white; width: 150px; height: 50px;">${deal[0].price}
-                                        $
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
-                                <img src="<@spring.url '/files/${deal[1].image}'/>" width="160" height="110" alt="">
-                                <p class="my-2">${deal[1].getDescription()}</p>
-                                <form action="<@spring.url '/sold/buy'/>" method="post">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                    <input type="hidden" name="itemId" value="${deal[1].id}">
-                                    <button id="deal2" type="submit" class="btn btn-outline-success mb-3"
-                                            style="color: green; background-color: white; width: 150px; height: 50px;">${deal[1].price}
-                                        $
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
-                                <img src="<@spring.url '/files/${deal[2].image}'/>" width="160" height="110" alt="">
-                                <p class="my-2">${deal[2].getDescription()}</p>
-                                <form action="<@spring.url '/sold/buy'/>" method="post">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                    <input type="hidden" name="itemId" value="${deal[2].id}">
-                                    <button id="deal3" type="submit" class="btn btn-outline-success mb-3"
-                                            style="color: green; background-color: white; width: 150px; height: 50px;">${deal[2].price}
-                                        $
-                                    </button>
-                                </form>
-                            </div>
+                            <#if (deal[0].userId != user.id)>
+                                <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
+                                    <img src="<@spring.url '/files/${deal[0].image}'/>" width="160" height="110" alt="">
+                                    <p class="my-2">${deal[0].getDescription()}</p>
+                                    <form action="<@spring.url '/sold/buy'/>" method="post">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <input type="hidden" name="itemId" value="${deal[0].id}">
+                                        <button id="deal1" type="submit" class="btn btn-outline-success mb-3"
+                                                style="color: green; background-color: white; width: 150px; height: 50px;">${deal[0].price}
+                                            $
+                                        </button>
+                                    </form>
+                                </div>
+                            </#if>
+                            <#if (deal[0].userId != user.id)>
+                                <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
+                                    <img src="<@spring.url '/files/${deal[1].image}'/>" width="160" height="110" alt="">
+                                    <p class="my-2">${deal[1].getDescription()}</p>
+                                    <form action="<@spring.url '/sold/buy'/>" method="post">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <input type="hidden" name="itemId" value="${deal[1].id}">
+                                        <button id="deal2" type="submit" class="btn btn-outline-success mb-3"
+                                                style="color: green; background-color: white; width: 150px; height: 50px;">${deal[1].price}
+                                            $
+                                        </button>
+                                    </form>
+                                </div>
+                            </#if>
+                            <#if (deal[0].userId != user.id)>
+                                <div class="deal d-flex flex-column justify-content-center align-items-center ms-5">
+                                    <img src="<@spring.url '/files/${deal[2].image}'/>" width="160" height="110" alt="">
+                                    <p class="my-2">${deal[2].getDescription()}</p>
+                                    <form action="<@spring.url '/sold/buy'/>" method="post">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <input type="hidden" name="itemId" value="${deal[2].id}">
+                                        <button id="deal3" type="submit" class="btn btn-outline-success mb-3"
+                                                style="color: green; background-color: white; width: 150px; height: 50px;">${deal[2].price}
+                                            $
+                                        </button>
+                                    </form>
+                                </div>
+                            </#if>
                         </#if>
                     </div>
                 </div>
@@ -157,9 +170,9 @@
                                 <#list market as m>
                                     <#if m.getUserId() != user.getId()>
                                         <button class="btn btn-outline-light mb-3" data-bs-toggle="modal"
-                                                data-bs-target="#marketNameDescriptionImage">${m.description}</button>
+                                                data-bs-target="#marketNameDescriptionImage${m.id}">${m.description}</button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="marketNameDescriptionImage" tabindex="-1"
+                                        <div class="modal fade" id="marketNameDescriptionImage${m.id}" tabindex="-1"
                                              aria-labelledby="marketNameDescriptionImage" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">

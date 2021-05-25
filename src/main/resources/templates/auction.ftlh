@@ -39,7 +39,7 @@
         <div class="row overflow-auto" style="width: 1600px; height: 900px;">
             <#list bets as b>
                 <#if user.id != b.userId>
-                    <div class="card my-3 ms-3 col-2" style="width: 18rem;">
+                    <div class="card my-3 ms-3 col-2" style="width: 18rem; height: 20rem;">
                         <img src="<@spring.url '/files/${b.image}'/>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${b.description}</h5>

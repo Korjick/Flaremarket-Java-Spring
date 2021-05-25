@@ -9,6 +9,7 @@ import ru.itis.flaremarket.models.enums.user.UserState;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -24,6 +25,7 @@ public class User {
     private String email;
     private String password;
     private String nickname;
+    private Boolean oauthLinked;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profileImageId", referencedColumnName = "id")
@@ -43,6 +45,13 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private List<UserSold> solds;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_tags",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    Set<Tag> userTags;
 
     private String confirmCode;
     private UserRole role;

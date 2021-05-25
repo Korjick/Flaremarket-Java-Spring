@@ -16,4 +16,5 @@ public class UserForm {
     @NotEmpty(message = "Password cannot be empty")
     @Size(min = 6, message = "Password should contain minimum 6 symbols")
     private String password;
+    private Boolean oauthLinked;
 }

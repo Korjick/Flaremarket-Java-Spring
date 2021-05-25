@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.itis.flaremarket.service.CustomOAuth2UserService;
+import ru.itis.flaremarket.service.GoogleOidcService;
 
 import javax.sql.DataSource;
 
@@ -31,6 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private CustomOAuth2UserService oauthUserService;
+
+    @Autowired
+    private OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService;
+
+    @Autowired
+    private GoogleOidcService googleOidcService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -52,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/signUp").permitAll()
+                .antMatchers("/signIn").permitAll()
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()
@@ -72,6 +84,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
+
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .oidcUserService(oidcUserService)
+                .userService(oauthUserService)
+                .and()
+                .successHandler(((request, response, authentication) -> {
+                    DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
+                    authentication.setAuthenticated(true);
+                    googleOidcService.processOAuthPostLogin(oidcUser, request, response);
+                }))
 
                 .and()
                 .rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository).tokenValiditySeconds(86400)

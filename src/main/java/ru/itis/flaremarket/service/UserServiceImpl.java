@@ -50,7 +50,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public UserDto save(User user) {
+        return UserDto.from(userRepository.save(user));
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.findById(id).ifPresent(user -> userRepository.delete(user));
     }
 }

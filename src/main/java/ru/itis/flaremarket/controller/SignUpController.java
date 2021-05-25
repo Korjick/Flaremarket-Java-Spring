@@ -26,6 +26,7 @@ public class SignUpController {
         if(result.hasErrors()){
             throw new NotValidParameterException(result.getAllErrors().stream().findFirst().get().getDefaultMessage());
         }
+        form.setOauthLinked(false);
         signUpService.signUp(form);
         return "redirect:/?acceptYourAccount";
     }
