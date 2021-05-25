@@ -12,18 +12,12 @@ public class SoldServiceImpl implements SoldService {
     private SellService sellService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private UserSoldService userSoldService;
 
     @Override
-    public void soldItem(Long itemId, Long userId) throws Exception {
+    public void soldItem(Long itemId, Long fromUserId, Long toUserId) throws Exception {
         // sell config
-        userSoldService.addUserSold(userService.getUserByEmail(((UserDetailsImpl) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal()).getUsername()).getId());
+        userSoldService.addUserSold(fromUserId, toUserId);
         sellService.removeSellItem(itemId);
     }
 }

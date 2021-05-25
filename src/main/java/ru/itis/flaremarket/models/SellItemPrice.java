@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -21,7 +22,6 @@ public class SellItemPrice {
     private Long id;
 
     private Long sellItemId;
-    private Time time;
-    private Date date;
     private Double price;
+    private Timestamp timestamp;
 }

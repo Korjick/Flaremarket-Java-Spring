@@ -21,6 +21,7 @@ public class UserSold {
     private Long id;
 
     private Long userId;
+    private Long buyerId;
     private Time time;
     private Date date;
 }

@@ -7,12 +7,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.itis.flaremarket.models.Bet;
+import ru.itis.flaremarket.models.SellItem;
 import ru.itis.flaremarket.repository.BetRepository;
 import ru.itis.flaremarket.security.details.UserDetailsImpl;
 
 import javax.persistence.EntityNotFoundException;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
 
@@ -27,6 +27,12 @@ public class BetServiceImpl implements BetService {
 
     @Autowired
     private SellService sellService;
+
+    @Autowired
+    private SellItemPriceService sellItemPriceService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private Executor asyncTask;
@@ -49,6 +55,15 @@ public class BetServiceImpl implements BetService {
             Bet current = bet.get();
             current.setBuyerId(buyerId);
             betRepository.save(current);
+
+            Optional<SellItem> sellItem = sellService.findSellItemById(bet.get().getId());
+            sellItem.ifPresent(s -> {
+                List<Double> prices = sellItemPriceService.getSellItemPrices(s.getId());
+                s.setChanee((s.getPrice() + 1) / prices.get(prices.size() - 1));
+                s.setPrice(s.getPrice() + 1);
+                sellService.save(s);
+                sellItemPriceService.addSellItemPrice(s.getId(), s.getPrice());
+            });
         } else {
             throw new EntityNotFoundException("Bet not found");
         }
@@ -66,7 +81,10 @@ public class BetServiceImpl implements BetService {
                 if(bet.isPresent()) {
                     Bet current = bet.get();
                     if(current.getBuyerId() != null) {
-                        soldService.soldItem(sellItemId, current.getBuyerId());
+                        soldService.soldItem(sellItemId, userService.getUserByEmail(((UserDetailsImpl) SecurityContextHolder
+                                .getContext()
+                                .getAuthentication()
+                                .getPrincipal()).getUsername()).getId(), current.getBuyerId());
                     } else {
                         sellService.removeSellItem(sellItemId);
                     }

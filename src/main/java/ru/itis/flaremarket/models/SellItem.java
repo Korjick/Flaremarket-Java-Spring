@@ -33,6 +33,7 @@ public class SellItem {
 
     private String platform;
     private Double price;
+    private Double chanee;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "betId", referencedColumnName = "id")

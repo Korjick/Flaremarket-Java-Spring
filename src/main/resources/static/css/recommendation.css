@@ -63,6 +63,16 @@ p {
     color: #8290A0;
 }
 
+.deal p {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    color: #000000;
+}
+
 h3 {
     font-family: Poppins, sans-serif;
     font-style: normal;
