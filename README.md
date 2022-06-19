@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to Flaremarket 👋</h1>
 <div style="display: flex;">
-<img alt="Version" width="480" height="340" src="https://user-images.githubusercontent.com/32599955/174463740-c36d15f1-c38f-4996-827d-4e355534688f.png" />
-<img alt="Version" width="480" height="340" src="https://user-images.githubusercontent.com/32599955/174463742-648c1b0b-b418-4791-98c0-8895b6ae024c.png" />
+<img alt="Version" width="640" height="360" src="https://user-images.githubusercontent.com/32599955/174463740-c36d15f1-c38f-4996-827d-4e355534688f.png" />
+<img alt="Version" width="640" height="360" src="https://user-images.githubusercontent.com/32599955/174463742-648c1b0b-b418-4791-98c0-8895b6ae024c.png" />
 </div>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
